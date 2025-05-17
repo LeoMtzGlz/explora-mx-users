@@ -30,6 +30,7 @@ DEBUG = config("DJANGO_DEBUG", default=False, cast=bool)
 ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOSTS', cast=Csv())
 
 """
+Aqui colocaré El Frontend que se conectará a esta app
 CSRF_TRUSTED_ORIGINS = [
     "https://c4f2-2806-103e-6-baa3-f595-277a-adaa-698c.ngrok-free.app"
 ]

@@ -21,19 +21,16 @@ COPY . .
 # --RUN chmod +x /app/entrypoint.sh
 
 
-
-
-
 # Establece variables de entorno para Django
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Expone el puerto para el contenedor
-EXPOSE 8000
+EXPOSE 8080
 
 # Usa gunicorn para producción
 # CMD gunicorn EMX_Users.wsgi:application --bind 0.0.0.0:$PORT
-CMD ["gunicorn", "EMX_Users.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "EMX_Users.wsgi:application", "--bind", "0.0.0.0:$PORT"]
 # ENTRYPOINT ["./entrypoint.sh"]
 # --ENTRYPOINT ["/app/entrypoint.sh"]
 
