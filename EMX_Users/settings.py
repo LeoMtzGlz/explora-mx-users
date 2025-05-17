@@ -197,3 +197,5 @@ LOGGING = {
         'level': 'DEBUG',
     },
 }
+
+# https://exploramx-users-72884452314.northamerica-south1.run.app
