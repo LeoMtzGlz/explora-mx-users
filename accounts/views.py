@@ -53,3 +53,25 @@ class ResetPasswordPhoneView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({"message": "Contraseña restablecida con éxito."}, status=status.HTTP_200_OK)
+
+
+# ********************************************************
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+import logging
+
+logger = logging.getLogger(__name__)
+
+@api_view(['POST'])
+def debug_logout(request):
+    try:
+        logger.debug("Logout request received: %s", request.data)
+        refresh_token = request.data.get("refresh")
+        token = RefreshToken(refresh_token)
+        token.blacklist()
+        logger.debug("Token blacklisted successfully.")
+        return Response({"detail": "Logout exitoso."})
+    except Exception as e:
+        logger.exception("Error en logout:")
+        return Response({"error": str(e)}, status=500)
