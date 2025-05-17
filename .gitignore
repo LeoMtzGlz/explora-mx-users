@@ -1,0 +1,7 @@
+.venv
+.env
+referencias.txt
+db.sqlite3
+twilio_2FA_recovery_code.txt
+entrypoint.sh
+docker.compose.yml

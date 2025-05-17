@@ -1,0 +1,45 @@
+# Archivos de configuración locales
+.env
+*.env
+.venv
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de logs
+*.log
+
+# Base de datos local (si usas SQLite)
+*.sqlite3
+
+# Archivos de Docker que no son necesarios dentro de la imagen
+.dockerignore
+Dockerfile
+
+# Archivos del sistema operativo o editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Archivos de Git
+.git/
+.gitignore
+
+# Archivos temporales
+*.bak
+*.tmp
+*.DS_Store
+
+# Media y archivos estáticos (si los recolectas en la imagen)
+media/
+staticfiles/
+
+# Mis archivos
+ngrok.exe
+referencias.txt
+twilio_2FA_recovery_code.txt

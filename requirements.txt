@@ -1,0 +1,11 @@
+django
+djangorestframework
+django-cors-headers
+djoser
+djangorestframework-simplejwt
+phonenumbers
+twilio
+python-dotenv
+python-decouple
+gunicorn
+psycopg2
