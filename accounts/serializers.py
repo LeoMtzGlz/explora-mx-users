@@ -8,6 +8,8 @@ from .utils import validate_phone_number
 from django.contrib.auth import authenticate
 # Logout
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
+from rest_framework_simplejwt.exceptions import  InvalidToken
+
 # Generar OTP
 from .models import PhoneOTP
 from .utils import send_whatsapp_otp
@@ -102,16 +104,26 @@ class LogoutSerializer(serializers.Serializer):
     refresh = serializers.CharField()
 
     def validate(self, attrs):
-        self.token = attrs['refresh']
+        token = attrs.get('refresh')
+        if not token:
+            raise serializers.ValidationError("Token de refresco requerido.")
+
+        self.token = token
+
+        # Validar que el token sea correcto antes de intentar ponerlo en blacklist
+        try:
+            RefreshToken(token)  # Intenta decodificarlo y verificar su validez
+        except InvalidToken as e:
+            raise serializers.ValidationError(f"Token inválido: {str(e)}")
+
         return attrs
 
     def save(self, **kwargs):
         try:
             token = RefreshToken(self.token)
             token.blacklist()
-        except TokenError:
-            raise serializers.ValidationError("Token inválido o ya ha sido cerrado.")
-
+        except TokenError as e:
+            raise serializers.ValidationError(f"Error al invalidar el token: {str(e)}")
 
 # Serilizer para generar el OTP
 class GenerateOTPSerializer(serializers.Serializer):

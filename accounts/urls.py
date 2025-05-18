@@ -2,14 +2,14 @@
 from django.urls import path
 from .views import (RegisterView, LoginView, LogoutView,
                     SendOTPWhatsAppView, VerifyOTPView, ResetPasswordPhoneView,
-debug_logout
+# debug_logout
                     )
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
-  #  path('logout/', LogoutView.as_view(), name='logout'),
-path("logout/", debug_logout),
+    path('logout/', LogoutView.as_view(), name='logout'),
+  # path("logout/", debug_logout),
 ]
 
 # URLs para enviar código por WhatsApp

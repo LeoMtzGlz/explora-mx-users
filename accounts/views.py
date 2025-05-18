@@ -28,7 +28,7 @@ class LogoutView(APIView):
         serializer = LogoutSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"message": "Sesión cerrada correctamente."}, status=status.HTTP_204_NO_CONTENT)
+            return Response({"message": "Sesión cerrada correctamente."}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # Clase para Enviar el codigo
@@ -54,7 +54,7 @@ class ResetPasswordPhoneView(APIView):
         serializer.save()
         return Response({"message": "Contraseña restablecida con éxito."}, status=status.HTTP_200_OK)
 
-
+"""
 # ********************************************************
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -75,3 +75,4 @@ def debug_logout(request):
     except Exception as e:
         logger.exception("Error en logout:")
         return Response({"error": str(e)}, status=500)
+"""
